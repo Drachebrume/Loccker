@@ -8,3 +8,11 @@ exports.register = function(req,res) {
     page: 'partials/register.ejs'
   });
 }
+
+exports.login = function(req,res) {
+
+  
+  res.render('index', {
+    page: 'partials/login.ejs'
+  });
+}

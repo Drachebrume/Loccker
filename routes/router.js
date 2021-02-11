@@ -7,6 +7,7 @@ const userController = require('../controllers/userController');
 
 router.get('/', indexController.index);
 router.get('/register', userController.register);
+router.get('/login', userController.login);
 
 
 module.exports = router;
