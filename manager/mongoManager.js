@@ -11,5 +11,10 @@ module.exports = {
   getAllDatabases: async function (db) {
     return db.command({ listDatabases: 1 });
   },
+  pushUser: async function (user) {
+    const session = Mongo.db('session');
+    const collection = session.collection('users');
+    await collection.insert(user);
+  },
 };
 

@@ -2,7 +2,7 @@
   <div class="card col-lg-6 mx-auto">
     <div class="card-body">
       <h5 class="card-title text-center">Inscription</h5>
-      <form class="g-3" method="POST" action="/signup">
+      <form class="g-3" method="POST" id="signupForm">
         <!-- ajouter class is-invalid -->
         <div class="row m-4">
           <label for="validationCompany" class="form-label col-sm-6">Nom d'utilisateur <span class="text-danger">*</span></label>
@@ -50,6 +50,7 @@
         <div class="row m-4 text-danger">
           * Champs obligatoires
         </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="row m-4">
           <div class="mx-auto text-center">
             <button class="btn btn-indigo" type="submit">S'inscrire</button>
