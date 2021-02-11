@@ -1,0 +1,50 @@
+.dark-primary-color    { background: #303F9F!important; }
+.default-primary-color { background: #3F51B5!important; }
+.light-primary-color   { background: #C5CAE9!important; }
+.text-primary-color    { color: #FFFFFF!important; }
+.accent-color          { background: #FF5252!important; }
+.primary-text-color    { color: #212121!important; }
+.secondary-text-color  { color: #757575!important; }
+.divider-color         { border-color: #BDBDBD!important; }
+
+.text-indigo {
+  color :  #3F51B5!important;
+}
+.text-dark-indigo {
+  color :  #303F9F!important;
+}
+.btn-indigo {
+  color : #fff!important;
+  background-color : #3F51B5!important;
+}
+.btn-indigo:hover {
+  background-color : #303F9F!important;
+}
+.btn-outline-indigo {
+  border : 1px solid #3F51B5!important;
+  background-color : #fff!important;
+  color : #3F51B5!important;
+}
+.btn-outline-indigo:hover {
+  border : none!important;
+  background-color : #3F51B5!important;
+  color : #fff!important;
+}
+
+.btn-dark-indigo {
+  color : #fff!important;
+  background-color : #303F9F!important;
+}
+.btn-dark-indigo:hover {
+  background-color : #29368b!important;
+}
+.btn-outline-dark-indigo {
+  border : 1px solid #303F9F!important;
+  background-color : #fff!important;
+  color : #303F9F!important;
+}
+.btn-outline-dark-indigo:hover {
+  border : none!important;
+  background-color : #303F9F!important;
+  color : #fff!important;
+}

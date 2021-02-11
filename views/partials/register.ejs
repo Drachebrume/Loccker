@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="card col-lg-6 mx-auto">
+    <div class="card-body">
+      <h5 class="card-title text-center">Inscription</h5>
+      <form class="g-3" method="POST" action="/signup">
+        <!-- ajouter class is-invalid -->
+        <div class="row m-4">
+          <label for="validationCompany" class="form-label col-sm-6">Nom de l'entreprise *</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="validationCompany" aria-describedby="validationCompanyFeedback" required>
+            <div id="validationCompanyFeedback" class="invalid-feedback">
+              Veuillez fournir un nom d'entreprise valide
+            </div>
+          </div>
+        </div>
+        <div class="row m-4">
+          <label for="validationMail" class="form-label col-sm-6">Adresse mail *</label>
+          <div class="col-sm-6">
+            <input type="email" class="form-control" id="validationMail" aria-describedby="validationMailFeedback" required>
+            <div id="validationMailFeedback" class="invalid-feedback">
+              Veuillez fournir une adresse mail valide.
+            </div>
+          </div>
+        </div>
+        <div class="row m-4">
+          <label for="validationPassword" class="form-label col-sm-6">Mot de passe *</label>
+          <div class="col-sm-6">
+            <input type="password" class="form-control" id="validationPassword" aria-describedby="validationPasswordFeedback" required>
+            <div id="validationPasswordFeedback" class="invalid-feedback">
+              Votre mot de passe doit comporter au moins :
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">8 caractères</li>
+                <li class="list-group-item">Un caractère spécial</li>
+                <li class="list-group-item">Une majuscule</li>
+                <li class="list-group-item">Un chiffre</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row m-4">
+          <label for="validationPasswordConfirm" class="form-label col-sm-6">Confirmer le mot de passe *</label>
+          <div class="col-sm-6">
+            <input type="password" class="form-control" id="validationPasswordConfirm" aria-describedby="validationPasswordConfirmFeedback" required>
+            <div id="validationPasswordConfirmFeedback" class="invalid-feedback">
+              Les mots de passe doivent être identiques
+            </div>
+          </div>
+        </div>
+        
+        <div class="row m-4">
+          <div class="mx-auto text-center">
+            <button class="btn btn-indigo" type="submit">Submit form</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

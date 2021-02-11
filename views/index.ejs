@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="">
+  <%- include('partials/header.ejs') %>
+  <body>
+      
+    <%- include('partials/navbar.ejs') %>
+    <!-- penser à inclure la page -->
+    <div class="container-fluid mt-4">
+      <div class="row">
+        <%- include(page) %>
+      </div>
+    </div>
+    
+    <!-- include('partials/footer.ejs')-->
+    <script src="/javascripts/agentive.js"></script>
+    <script type="text/javascript" href="/javascripts/formValidator"></script>
+  </body>
+</html>
