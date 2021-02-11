@@ -5,16 +5,16 @@
       <form class="g-3" method="POST" action="/signup">
         <!-- ajouter class is-invalid -->
         <div class="row m-4">
-          <label for="validationCompany" class="form-label col-sm-6">Nom de l'entreprise *</label>
+          <label for="validationCompany" class="form-label col-sm-6">Nom d'utilisateur <span class="text-danger">*</span></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="validationCompany" aria-describedby="validationCompanyFeedback" required>
-            <div id="validationCompanyFeedback" class="invalid-feedback">
-              Veuillez fournir un nom d'entreprise valide
+            <input type="text" class="form-control" id="validationUsername" aria-describedby="validationUsernameFeedback" required>
+            <div id="validationUsernameFeedback" class="invalid-feedback">
+              Veuillez fournir un nom valide
             </div>
           </div>
         </div>
         <div class="row m-4">
-          <label for="validationMail" class="form-label col-sm-6">Adresse mail *</label>
+          <label for="validationMail" class="form-label col-sm-6">Adresse mail <span class="text-danger">*</span></label>
           <div class="col-sm-6">
             <input type="email" class="form-control" id="validationMail" aria-describedby="validationMailFeedback" required>
             <div id="validationMailFeedback" class="invalid-feedback">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="row m-4">
-          <label for="validationPassword" class="form-label col-sm-6">Mot de passe *</label>
+          <label for="validationPassword" class="form-label col-sm-6">Mot de passe <span class="text-danger">*</span></label>
           <div class="col-sm-6">
             <input type="password" class="form-control" id="validationPassword" aria-describedby="validationPasswordFeedback" required>
             <div id="validationPasswordFeedback" class="invalid-feedback">
@@ -34,11 +34,12 @@
                 <li class="list-group-item">Une majuscule</li>
                 <li class="list-group-item">Un chiffre</li>
               </ul>
+              Et ne doit pas comporter les caractères : " ' ` ;
             </div>
           </div>
         </div>
         <div class="row m-4">
-          <label for="validationPasswordConfirm" class="form-label col-sm-6">Confirmer le mot de passe *</label>
+          <label for="validationPasswordConfirm" class="form-label col-sm-6">Confirmer le mot de passe <span class="text-danger">*</span></label>
           <div class="col-sm-6">
             <input type="password" class="form-control" id="validationPasswordConfirm" aria-describedby="validationPasswordConfirmFeedback" required>
             <div id="validationPasswordConfirmFeedback" class="invalid-feedback">
@@ -46,10 +47,12 @@
             </div>
           </div>
         </div>
-        
+        <div class="row m-4 text-danger">
+          * Champs obligatoires
+        </div>
         <div class="row m-4">
           <div class="mx-auto text-center">
-            <button class="btn btn-indigo" type="submit">Submit form</button>
+            <button class="btn btn-indigo" type="submit">S'inscrire</button>
           </div>
         </div>
       </form>
