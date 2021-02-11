@@ -12,6 +12,7 @@ exports.index = async function(req,res) {
   // console.log(await mongo.getAllDatabases(db2));
   // console.log(alpha);
   res.render('index', {
-    page: 'partials/home.ejs'
+    page: 'partials/home.ejs',
+    csrfToken: req.csrfToken(),
   });
 }
