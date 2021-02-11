@@ -54,3 +54,7 @@ document.getElementById('validationPasswordConfirm').addEventListener("keyup", e
 		validator(false, password2.id);
 	}
 })
+document.getElementById('signupForm').addEventListener("submit", event => {
+	const form = document.getElementById('signupForm');
+	form.action = "/signup"
+})
