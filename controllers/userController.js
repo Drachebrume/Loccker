@@ -13,8 +13,10 @@ exports.register = function(req,res, csrfProtection) {
 }
 
 exports.login = function(req,res) {
-s
   
+  const email=req.body.inputEmail;
+  const pwd=req.body.inputPassword;
+  console.log('email : ' + email + ' pwd : ' + pwd);
   res.render('index', {
     page: 'partials/login.ejs'
   });
