@@ -19,7 +19,7 @@ module.exports = {
     const Mongo = await connectDB();
     const session = Mongo.db('session');
     const collection = session.collection('users');
-    await collection.insert(user);
+    await collection.insertOne(user);
   },
   getUser: async function (mail) {
     const Mongo = await connectDB();

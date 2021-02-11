@@ -12,6 +12,7 @@
           <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
           <label for="inputPassword" class="visually-hidden">Password</label>
           <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Mot de passe" required>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <br/>
           <button type="submit" class="btn btn-indigo mx-auto">Connexion</button>
         </form>

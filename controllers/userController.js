@@ -12,14 +12,18 @@ exports.register = function(req,res, csrfProtection) {
   });
 }
 
-exports.login = function(req,res) {
+exports.login = async function(req,res) {
   
   const email=req.body.inputEmail;
   const pwd=req.body.inputPassword;
+
+  const user = await mongo.getUser(req.body.inputEmail);
+  console.log(user);
   console.log('email : ' + email + ' pwd : ' + pwd);
-  res.render('index', {
-    page: 'partials/login.ejs'
-  });
+  res.redirect('/');
+}
+
+
 exports.register = async function(req,res, csrfProtection) {
   res.render('index', {
     page: 'partials/register.ejs',

@@ -8,12 +8,12 @@ const userController = require('../controllers/userController');
 const csrf = require('csurf')
 const csrfProtection = csrf({ cookie: true })
 
-router.get('/', indexController.index);
+router.get('/', csrfProtection, indexController.index);
 router.get('/register', csrfProtection, userController.register);
 
 
 
-router.post('/login',userController.login)
+router.post('/login', csrfProtection,userController.login)
 
 router.post('/signup', csrfProtection, userController.signup)
 
