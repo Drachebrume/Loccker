@@ -7,7 +7,7 @@
         <div class="row m-4">
           <label for="validationCompany" class="form-label col-sm-6">Nom d'utilisateur <span class="text-danger">*</span></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="validationUsername" aria-describedby="validationUsernameFeedback" required>
+            <input type="text" name="name" class="form-control" id="validationUsername" aria-describedby="validationUsernameFeedback" required>
             <div id="validationUsernameFeedback" class="invalid-feedback">
               Veuillez fournir un nom valide
             </div>
@@ -16,7 +16,7 @@
         <div class="row m-4">
           <label for="validationMail" class="form-label col-sm-6">Adresse mail <span class="text-danger">*</span></label>
           <div class="col-sm-6">
-            <input type="email" class="form-control" id="validationMail" aria-describedby="validationMailFeedback" required>
+            <input type="email" name="mail" class="form-control" id="validationMail" aria-describedby="validationMailFeedback" required>
             <div id="validationMailFeedback" class="invalid-feedback">
               Veuillez fournir une adresse mail valide.
             </div>
@@ -25,7 +25,7 @@
         <div class="row m-4">
           <label for="validationPassword" class="form-label col-sm-6">Mot de passe <span class="text-danger">*</span></label>
           <div class="col-sm-6">
-            <input type="password" class="form-control" id="validationPassword" aria-describedby="validationPasswordFeedback" required>
+            <input type="password" name="password" class="form-control" id="validationPassword" aria-describedby="validationPasswordFeedback" required>
             <div id="validationPasswordFeedback" class="invalid-feedback">
               Votre mot de passe doit comporter au moins :
               <ul class="list-group list-group-flush">

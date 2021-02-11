@@ -15,4 +15,6 @@ router.get('/register', csrfProtection, userController.register);
 
 router.post('/login',userController.login)
 
+router.post('/signup', csrfProtection, userController.signup)
+
 module.exports = router;
