@@ -13,6 +13,8 @@ router.get('/home', csrfProtection, indexController.home);
 router.get('/register', csrfProtection, userController.register);
 router.get('/logout', csrfProtection, userController.logout)
 
+router.get('/profile', userController.profile);
+
 router.post('/login', csrfProtection, userController.login)
 
 router.post('/signup', csrfProtection, userController.signup)
