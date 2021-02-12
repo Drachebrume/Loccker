@@ -65,9 +65,7 @@ function confirmPassword () {
 	}
 }
 function confirmCaptcha () {
-	const captcha = document.getElementById('validationCatcha');
-	console.log(captcha);
-	console.log(captcha.value);
+	const captcha = document.getElementById('validationCaptcha');
 	if (captcha.value.length > 5) {
 		validator(true, captcha.id);
 		return true;
@@ -91,7 +89,7 @@ document.getElementById('validationPasswordConfirm').addEventListener("keyup", e
 document.getElementById('signupForm').addEventListener("submit", event => {
 	if (checkUsername() && checkMail() && checkPassword() && confirmPassword() && confirmCaptcha()) {
 		const form = document.getElementById('signupForm');
-		form.action = "/signup"
+		form.action = "/signup";
 	} else {
 		event.preventDefault();
   	event.stopPropagation();

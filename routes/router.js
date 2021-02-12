@@ -8,7 +8,8 @@ const userController = require('../controllers/userController');
 const csrf = require('csurf')
 const csrfProtection = csrf({ cookie: true })
 
-router.get('/', csrfProtection, indexController.index);
+router.get('/', indexController.index);
+router.get('/home', csrfProtection, indexController.home);
 router.get('/register', csrfProtection, userController.register);
 router.get('/logout', csrfProtection, userController.logout)
 

@@ -25,7 +25,7 @@ exports.register = async function(req,res) {
   const result = captcha();
   console.log(result);
   let source = result.image;
-  req.session.source = source.value;
+  req.session.source = result.value;
   res.render('index', {
     page: 'partials/register.ejs',
     csrfToken: req.csrfToken(),
@@ -35,22 +35,26 @@ exports.register = async function(req,res) {
 }
 
 exports.signup = async function(req,res) {
-  try {
-    const password = await crypt.encrypt(req.body.password);
-    const user = {
-      "_id": `loccker:${req.body.mail}`,
-      "name": req.body.name,
-      "mail": req.body.mail,
-      "password": password
-    };
-    if (!await mongo.getUser(user.mail)) {
-      await mongo.pushUser(user);
-      res.redirect('/home?status=created');
-    } else {
+  if (req.body.captcha === req.session.source) {
+    try {
+      const password = await crypt.encrypt(req.body.password);
+      const user = {
+        "_id": `loccker:${req.body.mail}`,
+        "name": req.body.name,
+        "mail": req.body.mail,
+        "password": password
+      };
+      if (!await mongo.getUser(user.mail)) {
+        await mongo.pushUser(user);
+        res.redirect('/home?status=created');
+      } else {
+        res.redirect('/register?status=error');
+      }
+    } catch(err) {
+      console.log(err);
       res.redirect('/register?status=error');
-    }
-  } catch(err) {
-    console.log(err);
-    res.redirect('/register?status=error');
-  };
+    };
+  } else {
+    res.redirect('/register?status=captchaError');
+  }
 }
