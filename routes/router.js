@@ -10,6 +10,7 @@ const csrfProtection = csrf({ cookie: true })
 
 router.get('/', csrfProtection, indexController.index);
 router.get('/register', csrfProtection, userController.register);
+router.get('/logout', csrfProtection, userController.logout)
 
 router.post('/login', csrfProtection, userController.login)
 

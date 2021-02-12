@@ -1,4 +1,18 @@
-<div class="row">
+<% if ( status ) { %>
+  <% if ( status === 'error' ) { %>
+    <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header text-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong class="me-auto ms-2">Erreur</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Une erreur s'est produite lors de la création de votre compte. Veuillez réessayer.
+      </div>
+    </div>
+  <% } %>
+<% } %>
+<div class="row mt-4 mb-4">
   <div class="card col-lg-6 mx-auto">
     <div class="card-body">
       <h5 class="card-title text-center">Inscription</h5>
@@ -49,6 +63,21 @@
         </div>
         <div class="row m-4 text-danger">
           * Champs obligatoires
+        </div>
+        <div class="row m-4 justify-content-center">
+          <div class="col-sm-6 text-center">
+            <img src="<%=source%>"/>
+            
+            <div class="input-group mt-2 mb-3">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-sync-alt"></i></span>
+              <input type="text" name="captcha" class="form-control" placeholder="Recopiez le code ci-dessus" required
+              id="validationCaptcha" aria-describedby="validationCaptchaFeedback">
+              <div id="validationCaptchaFeedback" class="invalid-feedback">
+                Le captcha doit être rempli.
+              </div>
+            </div>
+          </div>
+          
         </div>
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="row m-4">

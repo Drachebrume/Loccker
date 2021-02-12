@@ -1,10 +1,22 @@
 <nav class="navbar bg-transparent">
   <div class="container-fluid">
-    <a class="navbar-brand text-indigo ms-4">Loccker</a>
-    <form class="d-flex">
-      <a class="btn text-indigo" href="/register">Créer un compte</a>
-      <button class="btn btn-indigo" type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Connexion</button>
-    </form>
+    
+    <a class="navbar-brand text-indigo ms-2">
+      <img src="/images/logo.png" alt="" width="30" height="30">
+      Loccker
+    </a>
+    <% if (session.user) { %>
+      <form class="d-flex">
+        <a class="btn text-indigo" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
+        <a class="btn btn-danger" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+      </form>
+    <% } %>
+    <% if (!session.user) { %>
+      <form class="d-flex">
+        <a class="btn text-indigo" href="/register">Créer un compte</a>
+        <button class="btn btn-indigo" type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Connexion</button>
+      </form>
+    <% } %>
   </div>
 </nav>
 <%- include('modal/loginModal.ejs') %>

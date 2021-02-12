@@ -20,9 +20,11 @@
     "http-errors": "~1.6.3",
     "mongodb": "^3.6.3",
     "morgan": "~1.9.1",
+    "nodejs-captcha": "0.0.4",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "spectre.css": "^0.5.9",
+    "svg-captcha": "^1.4.0",
     "validate.js": "^0.13.1"
   }
 }
