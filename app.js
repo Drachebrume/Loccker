@@ -2,10 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const helmet = require("helmet");
 
 const session = require('express-session');
 const logger = require('morgan');
 const indexRouter = require('./routes/router');
+const config = require('./config/config');
 
 const app = express();
 
@@ -32,6 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(helmet(config.contentSecurityPolicy));
 app.use('/', indexRouter);
 
 module.exports = app;

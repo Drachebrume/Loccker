@@ -1,0 +1,27 @@
+<div class="row mt-4">
+  <div class="col-8 row mx-auto">
+    <div class="col-lg-6">
+      <div class="card b-0 shadow" style="width: 25vw">
+        <img src="/images/badassUser.jpg" class="img-fluid card-img-top">
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card b-0 shadow h-100" style="width: 25vw">
+        <div class="card-body">
+          <h3>Informations</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Mail : <%=user.mail%></li>
+          </ul>
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="" name="_csrf" value="<%= csrfToken %>">
+            <div class="input-group">
+              <input type="file" class="form-control" name="uploadFile" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+              <button class="btn btn-indigo" type="submit" id="inputGroupFileAddon04">Button</button>
+            </div>
+          </form>
+        </div>
+      </div>  
+    </div>
+    
+  </div>
+</div>

@@ -1,20 +1,19 @@
-<nav class="navbar bg-transparent">
+<nav class="navbar bg-purple" id="mainNavbar">
   <div class="container-fluid">
-    
-    <a class="navbar-brand text-indigo ms-2">
-      <img src="/images/logo.png" alt="" width="30" height="30">
-      Loccker
+    <a class="navbar-brand text-white btn bg-purple rounded-pill ms-2" href="/home">
+        <img src="/images/logoTransparent.png" alt="" width="50" height="50">
+        <h2 class="brandTitle d-inline align-middle ms-2">LOCCKER</h2>
     </a>
     <% if (session.user) { %>
       <form class="d-flex">
-        <a class="btn text-indigo" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
+        <a class="btn text-white" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
         <a class="btn btn-danger" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
       </form>
     <% } %>
     <% if (!session.user) { %>
       <form class="d-flex">
-        <a class="btn text-indigo" href="/register">Créer un compte</a>
-        <button class="btn btn-indigo" type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Connexion</button>
+        <a class="btn text-white me-4" href="/register">Créer un compte</a>
+        <button class="btn btn-outline-light rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Connexion</button>
       </form>
     <% } %>
   </div>

@@ -1,4 +1,20 @@
 {
-  "url": "mongodb+srv://admin:b2L03ejQ4dni4s7V50TZ95h91QuCRzKF@loccker0.jyujy.mongodb.net",
-  "user": "user"
+  "mongo": {
+    "url": "mongodb+srv://admin:b2L03ejQ4dni4s7V50TZ95h91QuCRzKF@loccker0.jyujy.mongodb.net",
+    "user": "user"
+  },
+  "cloudinary": {
+    "cloud_name": "loccker",
+    "api_key": "629274289836792",
+    "api_secret": "cvCEJE_hCLaM12mCJerz7Op7i8o"
+  },
+  "contentSecurityPolicy": {
+    "directives":{
+      "defaultSrc":["'self'"],
+      "scriptSrc":["'self'","ajax.googleapis.com","cdn.jsdelivr.net","kit.fontawesome.com"],
+      "styleSrc":["'self'","cdn.jsdelivr.net","use.fontawesome.com"],
+      "fontSrc":["'self'","use.fontawesome.com"],
+      "imgSrc":["'self'", "data:" ]
+    }
+  }
 }

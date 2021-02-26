@@ -1,12 +1,12 @@
 const config = require('../config/config');
 const MongoClient = require('mongodb').MongoClient;
-
+const mongoCfg = config.mongo;
 async function connectDB () {
-  return MongoClient.connect(config.url, { useUnifiedTopology: true});
+  return MongoClient.connect(mongoCfg.url, { useUnifiedTopology: true});
 };
 module.exports = {
   connectDB: async function () {
-    return MongoClient.connect(config.url, { useUnifiedTopology: true});
+    return MongoClient.connect(mongoCfg.url, { useUnifiedTopology: true});
   },
   getAllDocs: async function (db, collectionName) {
     const collection = db.collection(collectionName);

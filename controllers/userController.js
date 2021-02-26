@@ -4,11 +4,13 @@ const path = require('path');
 const mongo = require('../manager/mongoManager');
 const crypt = require('../manager/cryptManager');
 const captcha = require("nodejs-captcha");
+const uniqid = require('uniqid');
 
 exports.login = async function(req,res) {
   const user = await mongo.getUser(req.body.inputEmail);
   if (await crypt.compare(req.body.inputPassword, user.password)) { // triggers if correct
     req.session.user = user;
+    console.log(req.session.user);
     res.redirect('/');
   } else {
     res.redirect('/fdp');
@@ -42,7 +44,8 @@ exports.signup = async function(req,res) {
         "_id": `loccker:${req.body.mail}`,
         "name": req.body.name,
         "mail": req.body.mail,
-        "password": password
+        "password": password,
+        "folderId": uniqid(),
       };
       if (!await mongo.getUser(user.mail)) {
         await mongo.pushUser(user);
@@ -57,4 +60,14 @@ exports.signup = async function(req,res) {
   } else {
     res.redirect('/register?status=captchaError');
   }
+}
+exports.profile = async function(req,res) {
+  const { status } = req.query;
+  console.log(req.session.user);
+  res.render('index', {
+    page: 'partials/profile.ejs',
+    csrfToken: req.csrfToken(),
+    status,
+    user: req.session.user,
+  });
 }
