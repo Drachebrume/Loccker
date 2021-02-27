@@ -12,8 +12,8 @@
     "directives":{
       "defaultSrc":["'self'"],
       "scriptSrc":["'self'","ajax.googleapis.com","cdn.jsdelivr.net","kit.fontawesome.com"],
-      "styleSrc":["'self'","cdn.jsdelivr.net","use.fontawesome.com"],
-      "fontSrc":["'self'","use.fontawesome.com"],
+      "styleSrc":["'self'","cdn.jsdelivr.net","use.fontawesome.com","fonts.googleapis.com"],
+      "fontSrc":["'self'","use.fontawesome.com","fonts.googleapis.com","fonts.gstatic.com"],
       "imgSrc":["'self'", "data:" ]
     }
   }

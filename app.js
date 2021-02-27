@@ -33,8 +33,13 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
-
-app.use(helmet(config.contentSecurityPolicy));
+app.use(
+  helmet({
+    contentSecurityPolicy: 
+      config.contentSecurityPolicy
+    ,
+  })
+);
 app.use('/', indexRouter);
 
 module.exports = app;
