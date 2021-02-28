@@ -8,8 +8,17 @@ exports.upload = async function(req, res) {
   const form = new formidable.IncomingForm();
   form.parse(req, async (err, fields, files) => {
     const file = files.uploadFile;
-    console.log(file);
-    if(file.size < 50000) {
+    console.log(file.type);
+    let refusedType = true;
+    config.whiteList.some((allowedType) => {
+      if (file.type === allowedType) {
+        refusedType = false;
+        return true;
+      }
+    });
+    if (refusedType) {
+      res.redirect('/profile?status=typeNotAllowed');
+    } else if(file.size < 50000000) {
       const actualpath = process.cwd();
       const oldpath = file.path;
       const newpath = `${actualpath}/public/upload/${file.name}`; // url auto image + rename
@@ -18,10 +27,9 @@ exports.upload = async function(req, res) {
       });
       const fileType = file.type.split('/')[0];
       await cloud.uploadFile(newpath, file.name, fileType, user.folderId);
+      res.redirect('/profile?status=fileUploaded');
     } else {
       res.redirect('/profile?status=fileTooLarge');
     }
-    
   });
-  res.redirect('/profile?status=fileUploaded');
 }

@@ -59,7 +59,7 @@ strong {
   -o-background-size: cover;
   background-size: cover;
 }
-#mainNavbar, #mainNavbarMobile {
+#mainNavbar .container-fluid {
   height : 15vh!important;
 }
 
@@ -78,15 +78,16 @@ strong {
 .redLink:hover {
   text-decoration: underline;
 }
-
-.bg-purple {
-  background : #945df0!important;
+.btn-dark-purple {
+  color : #fff!important;
+  background-color : #733bc4!important;
 }
-.text-purple {
-  color : #945df0!important;
+.btn-dark-purple:hover {
+  background-color : #502084!important;
 }
-.text-dark-purple {
-  color : #733bc4!important;
+.btn-test {
+  color : #fff!important;
+  background: #03A9F4!important;
 }
 .btn-purple {
   color : #fff!important;

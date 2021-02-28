@@ -3,6 +3,7 @@ const path = require('path');
 //contient les requêtes mongoDB
 const mongo = require('../manager/mongoManager');
 const crypt = require('../manager/cryptManager');
+const cloud = require('../manager/cloudinaryManager');
 const captcha = require("nodejs-captcha");
 const uniqid = require('uniqid');
 
@@ -64,10 +65,12 @@ exports.signup = async function(req,res) {
 exports.profile = async function(req,res) {
   const { status } = req.query;
   console.log(req.session.user);
+  const files = await cloud.listFiles(req.session.user.folderId);
   res.render('index', {
     page: 'partials/profile.ejs',
     csrfToken: req.csrfToken(),
     status,
     user: req.session.user,
+    files,
   });
 }

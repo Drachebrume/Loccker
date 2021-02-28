@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-transparent" id="mainNavbar">
-  <div class="container-fluid">
+  <div class="container-fluid" id="weshalors">
     <a class="navbar-brand btn ms-2" href="/home">
         <img src="./images/logoTransparent.png" alt="" width="50" height="50">
         <h2 class="brandTitle d-inline align-middle ms-2"><strong>LOCCKER</strong></h2>
@@ -10,12 +10,12 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <div class="navbar-nav ms-auto">
         <% if (session.user) { %>
-            <a class="btn btn-purple me-5 Btitle" id="navBtnOne" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
+            <a class="btn btn-purple me-3 Btitle" id="navBtnOne" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
             <a class="btn btn-danger Btitle" id="navBtnTwo" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
         <% } %>
         <% if (!session.user) { %>
-            <a class="btn btn-purple me-5 Btitle" id="navBtnThree" href="/register"><h5>Créer un compte</h5></a>
-            <button class="btn btn-purple Btitle nav-link" id="navBtnFour" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <a class="btn me-3 text-white Btitle" id="navBtnThree" href="/register"><h5>Créer un compte</h5></a>
+            <button class="btn text-white Btitle nav-link" id="navBtnFour" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
               <h5><i class="fas fa-user"></i> Connexion</h5>
             </button>
         <% } %>

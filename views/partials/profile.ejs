@@ -1,12 +1,12 @@
 <div class="row mt-4">
   <div class="col-8 row mx-auto">
     <div class="col-lg-6">
-      <div class="card b-0 shadow" style="width: 25vw">
-        <img src="/images/badassUser.jpg" class="img-fluid card-img-top">
+      <div class="card border-0 shadow h-100" style="width: 25vw">
+        bla bla remplissage
       </div>
     </div>
     <div class="col-lg-6">
-      <div class="card b-0 shadow h-100" style="width: 25vw">
+      <div class="card border-0 shadow h-100" style="width: 25vw">
         <div class="card-body">
           <h3>Informations</h3>
           <ul class="list-group list-group-flush">
@@ -20,8 +20,22 @@
             </div>
           </form>
         </div>
-      </div>  
+      </div>
     </div>
-    
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
+      <% if (files) { %>
+        <% files.resources.forEach(file => { %>
+          <div class="col">
+            <div class="card h-100">
+              <img src="<%=file.secure_url%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= file.public_id.split('/')[2] %></h5>
+                <p class="card-text">Date de création : <%=file.created_at%></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
   </div>
 </div>
