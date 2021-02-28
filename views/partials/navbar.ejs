@@ -1,24 +1,55 @@
 <nav class="navbar navbar-expand-lg bg-transparent" id="mainNavbar">
   <div class="container-fluid">
     <a class="navbar-brand btn ms-2" href="/home">
-        <img src="/images/logoTransparent.png" alt="" width="50" height="50">
+        <img src="./images/logoTransparent.png" alt="" width="50" height="50">
         <h2 class="brandTitle d-inline align-middle ms-2"><strong>LOCCKER</strong></h2>
     </a>
-    <button class="navbar-toggler btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler btn btn-purple" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars text-white"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <div class="navbar-nav ms-auto">
-    <% if (session.user) { %>
-        <a class="btn text-white" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
-        <a class="btn btn-danger" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-    <% } %>
-    <% if (!session.user) { %>
-        <a class="btn text-indigo nav-link" href="/register">Créer un compte</a>
-        <button class="btn text-indigo nav-link" type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Connexion</button>
-    <% } %>
+        <% if (session.user) { %>
+            <a class="btn btn-purple me-5 Btitle" id="navBtnOne" href="/profile"><i class="fas fa-user"></i> Mon compte</a>
+            <a class="btn btn-danger Btitle" id="navBtnTwo" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        <% } %>
+        <% if (!session.user) { %>
+            <a class="btn btn-purple me-5 Btitle" id="navBtnThree" href="/register"><h5>Créer un compte</h5></a>
+            <button class="btn btn-purple Btitle nav-link" id="navBtnFour" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <h5><i class="fas fa-user"></i> Connexion</h5>
+            </button>
+        <% } %>
       </div>
     </div>
   </div>
 </nav>
-<%- include('modal/loginModal.ejs') %>
+<nav class="navbar navbar-expand-lg" id="mainNavbarMobile">
+  <div class="container-fluid bg-white">
+    <a class="navbar-brand btn ms-2" href="/home">
+        <img src="./images/logoTransparent.png" alt="" width="50" height="50">
+        <h2 class="brandTitle d-inline align-middle ms-2"><strong>LOCCKER</strong></h2>
+    </a>
+    <button class="navbar-toggler btn btn-purple" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdownMobile" aria-controls="navbarNavDropdownMobile" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdownMobile">
+      <div class="navbar-nav ms-auto">
+        <% if (session.user) { %>
+            <a class="btn purpleLink Btitle" id="navBtnOne" href="/profile">
+              <h5><i class="fas fa-user"></i> Mon compte</h5>
+            </a>
+            <a class="btn redLink Btitle" id="navBtnTwo" href="/logout">
+              <h5><i class="fas fa-sign-out-alt"></i> Déconnexion</h5>
+            </a>
+        <% } %>
+        <% if (!session.user) { %>
+            <a class="mx-auto purpleLink Btitle" id="navBtnThree" href="/register"><h5>Créer un compte</h5></a>
+            <button class="btn purpleLink Btitle nav-link" id="navBtnFour" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <h5><i class="fas fa-user"></i> Connexion</h5>
+            </button>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+<%- include('./modal/loginModal.ejs') %>

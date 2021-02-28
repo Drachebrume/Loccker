@@ -59,7 +59,7 @@ strong {
   -o-background-size: cover;
   background-size: cover;
 }
-#mainNavbar {
+#mainNavbar, #mainNavbarMobile {
   height : 15vh!important;
 }
 
@@ -70,6 +70,15 @@ strong {
 .purpleLink:hover {
   text-decoration: underline;
 }
+
+.redLink {
+  text-decoration : none;
+  color : #F93154!important;
+}
+.redLink:hover {
+  text-decoration: underline;
+}
+
 .bg-purple {
   background : #945df0!important;
 }
@@ -93,12 +102,20 @@ strong {
 }
 .btn-outline-purple:hover {
   border : none!important;
-  background-color : #733bc4!important;
+  background-color : #945df0!important;
+  color : #fff!important;
+}
+
+.btn-white {
+  background : #fff!important;
+}
+.btn-white:hover {
+  background : #945df0!important;
   color : #fff!important;
 }
 
 .mainCard {
-  background-color :transparent!important;
+  background-color :#fff!important;
   margin-top : -20vh;
   border : none!important;
 }
