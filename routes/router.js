@@ -26,7 +26,7 @@ router.get('/profile', requireLogin, csrfProtection, userController.profile);
 router.post('/upload', requireLogin, uploadController.upload);
 router.post('/profile/delete/:fileName', requireLogin, uploadController.delete);
 router.post('/profile/deleteAccount', requireLogin, userController.deleteAccount);
-  
+
 router.post('/login', csrfProtection, userController.login);
 
 router.post('/signup', csrfProtection, userController.signup);
