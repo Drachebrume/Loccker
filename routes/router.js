@@ -37,6 +37,6 @@ router.get('/passwordReset', csrfProtection, userController.resetLogin);
 
 
 
-router.get('/*', csrfProtection, indexController.home); // redirect error url
+router.get('/*', csrfProtection, indexController.forbidden); // redirect error url
 
 module.exports = router;

@@ -3,10 +3,10 @@ const path = require('path');
 //contient les requêtes mongoDB
 const mongo = require('../manager/mongoManager');
 
-exports.index = async function(req,res) {
+exports.index = function(req,res) {
   res.redirect('/home');
 }
-exports.home = async function(req,res) {
+exports.home = function(req,res) {
   const { status } = req.query;
   res.render('index', {
     page: 'partials/home.ejs',
@@ -14,4 +14,6 @@ exports.home = async function(req,res) {
     status,
   });
 }
-
+exports.forbidden = function(req,res) {
+  res.redirect('/home?status=forbidden');
+}
