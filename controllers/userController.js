@@ -30,7 +30,6 @@ exports.logout = function(req,res) {
 exports.register = async function(req,res) {
   const { status } = req.query;
   const result = captcha();
-  console.log(result);
   let source = result.image;
   req.session.source = result.value;
   res.render('index', {

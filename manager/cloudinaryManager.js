@@ -46,12 +46,6 @@ module.exports = {
   getDownloadUrl: async function(fileId) {
     cloudinary.config(cloudinaryCfg);
     console.log(fileId);
-    const timestamp = Math.round((new Date).getTime()/1000);
-    const signature = await cloudinary.utils.api_sign_request({
-      timestamp: timestamp,
-      eager: 'w_400,h_300,c_pad|w_260,h_200,c_crop',
-      public_id: fileId}, 
-      "cvCEJE_hCLaM12mCJerz7Op7i8o");
-    return cloudinary.utils.download_zip_url({signature: signature});
+    return cloudinary.utils.download_zip_url({public_ids: fileId});
   }
 } 

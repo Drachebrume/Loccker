@@ -49,6 +49,30 @@
           </div>
         </div>
       <% } %>
+      <% if ( status === 'loginError' ) { %>
+        <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+          <div class="toast-header text-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong class="me-auto ms-2">Connexion refusée</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            L'identifiant ou le mot de passe sont incorrects. 
+          </div>
+        </div>
+      <% } %>
+      <% if ( status === 'loginError' ) { %>
+        <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+          <div class="toast-header text-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong class="me-auto ms-2">Compte supprimé</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Votre compte a bien été supprimé, au revoir !
+          </div>
+        </div>
+      <% } %>
     <% } %></div>
     <div class="row">
       <div class="col-sm-6">
