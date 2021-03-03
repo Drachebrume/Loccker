@@ -42,6 +42,31 @@ module.exports = {
     const session = Mongo.db('session');
     const collection = session.collection('users');
     return collection.findOneAndDelete({"_id": user._id});
+  },
+
+
+  pushToken: async function (token) {
+    const Mongo = await connectDB();
+    const session = Mongo.db('session');
+    const collection = session.collection('token');
+    await collection.insertOne(token);
+  },
+  getToken: async function (userId) {
+    const Mongo = await connectDB();
+    const session = Mongo.db('session');
+    const collection = session.collection('token');
+    const projection = {
+      "title": 1,
+      "quantity": 1,
+    }
+    return collection.findOne({"userId": `${userId}`}, projection);
+  },
+
+  deleteToken: async function(userId) {
+    const Mongo = await connectDB();
+    const session = Mongo.db('session');
+    const collection = session.collection('token');
+    return collection.findOneAndDelete({"userId": userId});
   }
 };
 

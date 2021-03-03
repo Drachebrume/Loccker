@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 //contient les requêtes mongoDB
 const mongo = require('../manager/mongoManager');
+const resetManger = require('../manager/resetPassManager');
 const crypt = require('../manager/cryptManager');
 const cloud = require('../manager/cloudinaryManager');
 const captcha = require("nodejs-captcha");
 const uniqid = require('uniqid');
-
 exports.login = async function(req,res) {
   const user = await mongo.getUser(req.body.inputEmail);
   if (user) {
@@ -96,3 +96,18 @@ exports.deleteAccount = async function(req,res) {
     res.redirect('/profile?status=deleteAccountError')
   }
 }
+exports.resetPasswordRequestController = async (req, res, next) => {
+  const test = await resetManger.requestPasswordReset(
+    req.body.email
+  );
+  return res.json(test);
+};
+
+exports.resetPasswordController = async (req, res, next) => {
+  const test = await resetManger.resetPassword(
+    req.body.userId,
+    req.body.token,
+    req.body.password
+  );
+  return res.json(test);
+};

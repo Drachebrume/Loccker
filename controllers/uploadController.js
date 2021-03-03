@@ -37,7 +37,7 @@ exports.upload = async function(req, res) {
       user.files.push(file.name);
       req.session.user = user;
       await mongo.updateUser(user);
-      fs.unlinkSync(newpath);
+      //fs.unlinkSync(newpath);
       res.redirect('/profile?status=fileUploaded');
     } else {
       res.redirect('/profile?status=fileTooLarge');

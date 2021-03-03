@@ -31,6 +31,8 @@ router.post('/login', csrfProtection, userController.login);
 
 router.post('/signup', csrfProtection, userController.signup);
 
+router.post("/auth/requestResetPassword", userController.resetPasswordRequestController);
+router.post("/auth/resetPassword", userController.resetPasswordController);
 
 
 router.get('/*', csrfProtection, indexController.home); // redirect error url
