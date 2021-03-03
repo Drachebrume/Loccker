@@ -9,18 +9,22 @@ const uniqid = require('uniqid');
 
 exports.login = async function(req,res) {
   const user = await mongo.getUser(req.body.inputEmail);
-  if (await crypt.compare(req.body.inputPassword, user.password)) { // triggers if correct
-    req.session.user = user;
-    console.log(req.session.user);
-    res.redirect('/');
+  if (user) {
+    if (await crypt.compare(req.body.inputPassword, user.password)) { // triggers if correct
+      req.session.user = user;
+      console.log(req.session.user);
+      res.redirect('/');
+    } else {
+      res.redirect('/home?status=loginError');
+    }
   } else {
-    res.redirect('/fdp');
+    res.redirect('/home?status=loginError');
   }
 }
 
 exports.logout = function(req,res) {
   req.session.destroy();
-  res.redirect('/?status=logout');
+  res.redirect('/home?status=logout');
 }
 
 exports.register = async function(req,res) {
@@ -47,6 +51,7 @@ exports.signup = async function(req,res) {
         "mail": req.body.mail,
         "password": password,
         "folderId": uniqid(),
+        "files": [],
       };
       if (!await mongo.getUser(user.mail)) {
         await mongo.pushUser(user);
@@ -64,13 +69,30 @@ exports.signup = async function(req,res) {
 }
 exports.profile = async function(req,res) {
   const { status } = req.query;
-  console.log(req.session.user);
-  const files = await cloud.listFiles(req.session.user.folderId);
+  const { user } = req.session;
+  const userFetch = await mongo.getUser(user.mail);
+  req.session.user = userFetch;
+  let files;
+  if (user.files.length > 0) {
+    files = await cloud.getFiles(user.folderId, user.files);
+  }
+  console.log(files);
   res.render('index', {
     page: 'partials/profile.ejs',
     csrfToken: req.csrfToken(),
     status,
-    user: req.session.user,
+    user,
     files,
   });
+}
+
+exports.deleteAccount = async function(req,res) {
+  const { user } = req.session;
+  if (mongo.deleteUser(user)) {
+    cloud.deleteFolder(user.folderId);
+    req.session.destroy();
+    res.redirect('/home?status=accountDeleted')
+  } else {
+    res.redirect('/profile?status=deleteAccountError')
+  }
 }

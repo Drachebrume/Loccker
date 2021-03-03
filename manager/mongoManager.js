@@ -28,8 +28,20 @@ module.exports = {
     const projection = {
       "title": 1,
       "quantity": 1,
-     }
+    }
     return collection.findOne({"_id": `loccker:${mail}`}, projection);
+  },
+  updateUser: async function(user) {
+    const Mongo = await connectDB();
+    const session = Mongo.db('session');
+    const collection = session.collection('users');
+    await collection.findOneAndReplace({"_id": user._id}, user);
+  },
+  deleteUser: async function(user) {
+    const Mongo = await connectDB();
+    const session = Mongo.db('session');
+    const collection = session.collection('users');
+    return collection.findOneAndDelete({"_id": user._id});
   }
 };
 

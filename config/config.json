@@ -11,10 +11,11 @@
   "contentSecurityPolicy": {
     "directives":{
       "defaultSrc":["'self'"],
-      "scriptSrc":["'self'","ajax.googleapis.com","cdn.jsdelivr.net","kit.fontawesome.com"],
-      "styleSrc":["'self'","cdn.jsdelivr.net","use.fontawesome.com","fonts.googleapis.com"],
-      "fontSrc":["'self'","use.fontawesome.com","fonts.googleapis.com","fonts.gstatic.com"],
-      "imgSrc":["'self'", "data:", "res.cloudinary.com" ]
+      "scriptSrc":["'self'","ajax.googleapis.com","cdn.jsdelivr.net","kit.fontawesome.com", "res.cloudinary.com"],
+      "styleSrc":["'self'","cdn.jsdelivr.net","use.fontawesome.com","fonts.googleapis.com", "res.cloudinary.com"],
+      "fontSrc":["'self'","use.fontawesome.com","fonts.googleapis.com","fonts.gstatic.com", "res.cloudinary.com"],
+      "imgSrc":["'self'", "data:", "res.cloudinary.com" ],
+      "objectSrc":["'self'", "res.cloudinary.com"]
     }
   },
   "whiteList": 

@@ -22,12 +22,16 @@ router.get('/home', csrfProtection, indexController.home);
 router.get('/register', csrfProtection, userController.register);
 router.get('/logout', csrfProtection, userController.logout);
 router.get('/profile', requireLogin, csrfProtection, userController.profile);
-router.post('/upload', requireLogin, uploadController.upload);
 
+router.post('/upload', requireLogin, uploadController.upload);
+router.post('/profile/delete/:fileName', requireLogin, uploadController.delete);
+router.post('/profile/deleteAccount', requireLogin, userController.deleteAccount);
   
 router.post('/login', csrfProtection, userController.login);
 
 router.post('/signup', csrfProtection, userController.signup);
+
+
 
 router.get('/*', csrfProtection, indexController.home); // redirect error url
 

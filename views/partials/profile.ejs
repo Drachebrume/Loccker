@@ -1,36 +1,55 @@
 <div class="row mt-4">
-  <div class="col-8 row mx-auto">
+  <div class="col-lg-8 row mx-auto">
     <div class="col-lg-6">
-      <div class="card border-0 shadow h-100" style="width: 25vw">
-        bla bla remplissage
+      <div class="card border-0 shadow h-100" >
+        <div class="card-body">
+          <h3>Actions sur le compte</h3>
+          <br>
+          <form method="POST" action="/profile/deleteAccount">
+            <button type="submit" class="btn btn-danger">
+              Supprimer mon compte
+            </button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-lg-6">
-      <div class="card border-0 shadow h-100" style="width: 25vw">
+      <div class="card border-0 shadow h-100" >
         <div class="card-body">
-          <h3>Informations</h3>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Mail : <%=user.mail%></li>
-          </ul>
+          <h3>Ajouter un fichier</h3>
+          <small>Les fichiers de plus de 50mo ne sont pas autorisés.</small>
           <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="input-group">
               <input type="file" class="form-control" name="uploadFile" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-              <button class="btn btn-indigo" type="submit" id="inputGroupFileAddon04">Button</button>
+              <button class="btn btn-purple" type="submit" id="inputGroupFileAddon04">Ajouter</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
+  </div>
+  <div class="col-lg-8 mx-auto">
+    <div class="row row-cols-2 row-cols-lg-6 g-4 mb-4 m-2">
       <% if (files) { %>
         <% files.resources.forEach(file => { %>
           <div class="col">
             <div class="card h-100">
-              <img src="<%=file.secure_url%>" class="card-img-top" alt="...">
+              <object data="<%=file.secure_url%>" type="image/png">
+                <img src="/images/folder.png" class="card-img-top" alt="file image">
+              </object>
               <div class="card-body">
                 <h5 class="card-title"><%= file.public_id.split('/')[2] %></h5>
                 <p class="card-text">Date de création : <%=file.created_at%></p>
+              </div>
+              <div class="card-footer">
+                <form method="POST" action="/profile/delete/<%=file.public_id.split('/')[2]%>">
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                </form>
               </div>
             </div>
           </div>

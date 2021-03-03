@@ -12,11 +12,35 @@ module.exports = {
     function(error, result) {console.log(result, error)});
   },
   listFiles: async function(folderName) {
-    
     cloudinary.config(cloudinaryCfg);
-    console.log(cloudinary.image("https://res.cloudinary.com/loccker/image/upload/v1614183623/userStorage/bzqhmgkljjzuzw/nhs-logo-880x4951.jpeg.jpg", {format: "png", width: 100, height: 100, crop: "fill"}));
     return await cloudinary.api.resources(
       { type: 'upload', 
         prefix: `userStorage/${folderName}/` });
+  },
+  deleteFile: async function(folderName, fileName) {
+    cloudinary.config(cloudinaryCfg);
+    console.log(`userStorage/${folderName}/${fileName}`);
+    await cloudinary.uploader.destroy(`userStorage/${folderName}/${fileName}`, {invalidate: true}, function(error,result) {
+      console.log(result, "---------", error);
+      return(result);
+    });
+  },
+  getFiles: async function(folderName, fileArray) {
+    cloudinary.config(cloudinaryCfg);
+    for (let i = 0 ; i < fileArray.length ; i+=1) {
+      fileArray[i] = `userStorage/${folderName}/${fileArray[i]}`;
+    }
+    console.log(fileArray);
+    const results = cloudinary.api.resources_by_ids(fileArray, function(error, result) {
+      if(error) {return error}
+    });
+    return results;
+  },
+  deleteFolder: async function(folderName) {
+    await cloudinary.api.delete_resources_by_prefix(`userStorage/${folderName}/`, 
+      function(error, result) {
+        cloudinary.api.delete_folder(`userStorage/${folderName}`, function(error2, result2){console.log(error2, result2);});;
+    });
+    
   }
 } 
