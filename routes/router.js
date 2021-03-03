@@ -35,6 +35,6 @@ router.post("/auth/requestResetPassword", userController.resetPasswordRequestCon
 router.post("/auth/resetPassword", userController.resetPasswordController);
 
 
-router.get('/*', csrfProtection, indexController.home); // redirect error url
+router.get('/*', csrfProtection, indexController.forbidden); // redirect error url
 
 module.exports = router;

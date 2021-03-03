@@ -47,6 +47,18 @@
       </div>
     </div>
   <% } %>
+  <% if ( status === 'deleteFileError' ) { %>
+    <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header text-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong class="me-auto ms-2">Fichier supprimé</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Erreur lors de la suppression du fichier.
+      </div>
+    </div>
+  <% } %>
 <% } %>
 <div class="row mt-4">
   <div class="col-lg-8 row mx-auto">
