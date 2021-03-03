@@ -14,3 +14,4 @@ exports.home = async function(req,res) {
     status,
   });
 }
+

@@ -1,4 +1,4 @@
-//let validFields = [0, 0, 0, 0];
+let validFields = [0, 0, 0, 0];
 function validator(valid, inputId) {
   let field = document.getElementById(inputId);
   if (valid) {
@@ -9,33 +9,7 @@ function validator(valid, inputId) {
     field.classList.add('is-invalid')
   }
 }
-function checkUsername () {
-	const name = document.getElementById('validationUsername');
-	const refused = /['`";]/;
-  if (name.value.length > 2 && !(refused.test(name.value))) {
-		validator(true, name.id);
-		return true;
-  } else {
-		validator(false, name.id);
-		return false
-  }
-}
-function checkMail () {
-	const mail = document.getElementById('validationMail');
-	const refused = /['`";]/;
-	if (mail.value.includes("@") && !(refused.test(mail.value))) {
-		if ((mail.value.split("@"))[1].includes(".")) {
-			validator(true, mail.id);
-			return true;
-		} else {
-			validator(false, mail.id);
-			return false;
-		}
-	} else {
-		validator(false, mail.id);
-		return false;
-	}
-}
+
 function checkPassword () {
 	const password = document.getElementById('validationPassword');
 	const format = /[ !@#$%^&*()_+\-=\[\]{}:\\|,.<>\/?~]/;
@@ -74,25 +48,22 @@ function confirmCaptcha () {
 		return false;
 	}
 }
-document.getElementById('validationUsername').addEventListener("keyup", event => {
-	checkUsername();
-});
-document.getElementById('validationMail').addEventListener("keyup", event => {
-	checkMail();
-});
+
 document.getElementById('validationPassword').addEventListener("keyup", event => {
 	checkPassword();
 });
 document.getElementById('validationPasswordConfirm').addEventListener("keyup", event => {
 	confirmPassword();
 });
-document.getElementById('signupForm').addEventListener("submit", event => {
-	if (checkUsername() && checkMail() && checkPassword() && confirmPassword() && confirmCaptcha()) {
-		const form = document.getElementById('signupForm');
-		form.action = "/signup";
+document.getElementById('resetForm').addEventListener("submit", event => {
+	console.log('ici');
+	if (checkPassword() && confirmPassword() && confirmCaptcha()) {
+		const form = document.getElementById('resetForm');
+		console.log(form);
+		form.action = "/auth/resetPassword";
 	} else {
 		event.preventDefault();
-  	event.stopPropagation();
-  	event.stopImmediatePropagation();
+		event.stopPropagation();
+		event.stopImmediatePropagation();
 	}
 });

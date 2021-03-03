@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const mongo = require('../manager/mongoManager');
 
 const JWTSecret = process.env.JWT_SECRET;
-const bcryptSalt = process.env.BCRYPT_SALT;
+const bcryptSalt = 10;
 const clientURL = process.env.CLIENT_URL;
 
 
@@ -14,8 +14,8 @@ exports.requestPasswordReset = async (email) => {
   console.log(user);
   if (!user) throw new Error("Email does not exist");
 
-  let token = await mongo.getToken({ userId: user._id });
-  if (token) await mongo.deleteToken(userId);
+  let token = await mongo.getToken(user._id);
+  if (token) await mongo.deleteToken(user._id);
 
   let resetToken = crypto.randomBytes(32).toString("hex");
   const hash = await bcrypt.hash(resetToken, Number(bcryptSalt));
@@ -29,7 +29,7 @@ exports.requestPasswordReset = async (email) => {
   await mongo.pushToken(tokenTab);
 
 
-  const link = `${clientURL}/passwordReset?token=${resetToken}&id=${user._id}`;
+  const link = `http://localhost:7000/passwordReset?token=${resetToken}&id=${user.mail}`;
 
   sendEmail(
     user.mail,
@@ -44,7 +44,8 @@ exports.requestPasswordReset = async (email) => {
 };
 
 exports.resetPassword = async (userId, token, password) => {
-  let passwordResetToken = await Token.findOne({ userId });
+  let user = await mongo.getUser(userId);
+  let passwordResetToken = await mongo.getToken(user._id);
 
   if (!passwordResetToken) {
     throw new Error("Invalid or expired password reset token");
@@ -56,15 +57,12 @@ exports.resetPassword = async (userId, token, password) => {
     throw new Error("Invalid or expired password reset token");
   }
 
-  const hash = await bcrypt.hash(password, Number(bcryptSalt));
+  const hash = await bcrypt.hash(password, bcryptSalt);
+  console.log(hash);
+  user.password = hash ;
 
-  await User.updateOne(
-    { _id: userId },
-    { $set: { password: hash } },
-    { new: true }
-  );
+  await mongo.updateUser(user);
 
-  const user = await User.findById({ _id: userId });
 
   sendEmail(
     user.email,
@@ -75,7 +73,7 @@ exports.resetPassword = async (userId, token, password) => {
     "./template/resetPassword.handlebars"
   );
 
-  await passwordResetToken.deleteOne();
+  await mongo.deleteToken(`loccker:${userId}`);
 
   return true;
 }

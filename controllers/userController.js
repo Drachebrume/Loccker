@@ -40,6 +40,30 @@ exports.register = async function(req,res) {
     source,
   });
 }
+exports.resetLogin = async function(req,res) {
+ 
+  const { status } = req.query;
+  const result = captcha();
+  let token = req.query.token;
+  let id = req.query.id;
+  let source = result.image;
+  console.log(token);
+  req.session.source = result.value;
+  let testToken = await mongo.getToken(`loccker:${id}`)
+  if(testToken ){
+    res.render('index', {
+      page: 'partials/reset.ejs',
+      csrfToken: req.csrfToken(),
+      status,
+      source,
+      token,
+      id
+    }); 
+  }
+  else{
+    res.redirect('/home');
+  }
+}
 
 exports.signup = async function(req,res) {
   if (req.body.captcha === req.session.source) {
@@ -106,12 +130,14 @@ exports.resetPasswordRequestController = async (req, res, next) => {
   const test = await resetManger.requestPasswordReset(
     req.body.email
   );
-  return res.json(test);
+  return res.redirect('/home')
+  
 };
 
 exports.resetPasswordController = async (req, res, next) => {
+
   const test = await resetManger.resetPassword(
-    req.body.userId,
+    req.body.id,
     req.body.token,
     req.body.password
   );
