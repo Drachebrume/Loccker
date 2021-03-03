@@ -7,11 +7,14 @@ const sendEmail = async (email, subject, payload, template) => {
   try {
     // create reusable transporter object using the default SMTP transport
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
+      host: 'smtp.gmail.com',
       port: 465,
       auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD, // naturally, replace both with your real credentials or an application-specific password
+        user: 'loccker.app@gmail.com',
+        pass: '&Loccker2021', // naturally, replace both with your real credentials or an application-specific password
+      },
+      tls: {
+        rejectUnauthorized: false
       },
     });
 
@@ -19,7 +22,7 @@ const sendEmail = async (email, subject, payload, template) => {
     const compiledTemplate = handlebars.compile(source);
     const options = () => {
       return {
-        from: process.env.FROM_EMAIL,
+        from: 'loccker.app@gmail.com',
         to: email,
         subject: subject,
         html: compiledTemplate(payload),

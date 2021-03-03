@@ -2,6 +2,7 @@ $(document).ready(() => {
   $('.toast').toast('show');
   $('[data-toggle=popover]').popover();
   modifyNavbar();
+
 });
 function modifyNavbar() {
   console.log("yo");
