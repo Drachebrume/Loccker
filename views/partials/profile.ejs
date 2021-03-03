@@ -1,3 +1,53 @@
+<% if ( status ) { %>
+  <% if ( status === 'fileTooLarge' ) { %>
+    <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header text-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong class="me-auto ms-2">Erreur</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Le fichier est trop volumineux, il ne doit pas excéder 50 Mo.
+      </div>
+    </div>
+  <% } %>
+  <% if ( status === 'fileUploaded' ) { %>
+    <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+      <div class="toast-header">
+        <i class="fas fa-check text-success"></i>
+        <strong class="ms-2 me-auto text-success">Fichier envoyé !</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Votre fichier a bien été envoyé.
+      </div>
+    </div>
+  <% } %>
+  <% if ( status === 'typeNotAllowed' ) { %>
+    <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header text-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong class="me-auto ms-2">Erreur</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Ce type de fichier n'est pas pris en charge.
+      </div>
+    </div>
+  <% } %>
+  <% if ( status === 'fileDeleted' ) { %>
+    <div class="toast mx-auto" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header text-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong class="me-auto ms-2">Fichier supprimé</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Votre fichier a bien été supprimé.
+      </div>
+    </div>
+  <% } %>
+<% } %>
 <div class="row mt-4">
   <div class="col-lg-8 row mx-auto">
     <div class="col-lg-6">
@@ -31,7 +81,7 @@
     </div>
   </div>
   <div class="col-lg-8 mx-auto">
-    <div class="row row-cols-2 row-cols-lg-6 g-4 mb-4 m-2">
+    <div class="row row-cols-2 row-cols-lg-4 g-4 mb-4 m-2">
       <% if (files) { %>
         <% files.resources.forEach(file => { %>
           <div class="col">
@@ -44,12 +94,21 @@
                 <p class="card-text">Date de création : <%=file.created_at%></p>
               </div>
               <div class="card-footer">
-                <form method="POST" action="/profile/delete/<%=file.public_id.split('/')[2]%>">
-                  <button type="submit" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                </form>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <form method="POST" action="/profile/delete/<%=file.public_id.split('/')[2]%>" class="text-center">
+                      <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    </form>
+                  </div>
+                  <div class="col-lg-6">
+                    <a href="<%=downloadUrl%>" class="btn btn-purple" target="_blank">
+                      <i class="fas fa-download"></i>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

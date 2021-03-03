@@ -73,9 +73,14 @@ exports.profile = async function(req,res) {
   const userFetch = await mongo.getUser(user.mail);
   req.session.user = userFetch;
   let files;
+  let downloadUrl = [];
   if (user.files.length > 0) {
     files = await cloud.getFiles(user.folderId, user.files);
+    for (let i = 0 ; i < files.resources.length ; i+=1) {
+      downloadUrl[i] = await cloud.getDownloadUrl(files.resources[i].public_id);
+    }
   }
+  console.log(downloadUrl);
   console.log(files);
   res.render('index', {
     page: 'partials/profile.ejs',
@@ -83,6 +88,7 @@ exports.profile = async function(req,res) {
     status,
     user,
     files,
+    downloadUrl,
   });
 }
 
