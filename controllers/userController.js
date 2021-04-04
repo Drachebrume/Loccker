@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 //contient les requêtes mongoDB
 const mongo = require('../manager/mongoManager');
-const resetManger = require('../manager/resetPassManager');
+const resetManager = require('../manager/resetPassManager');
 const crypt = require('../manager/cryptManager');
 const cloud = require('../manager/cloudinaryManager');
 const captcha = require("nodejs-captcha");
@@ -10,7 +10,7 @@ const uniqid = require('uniqid');
 exports.login = async function(req,res) {
   const user = await mongo.getUser(req.body.inputEmail);
   if (user) {
-    if (await crypt.compare(req.body.inputPassword, user.password)) { // triggers if correct
+    if (crypt.compare(req.body.inputPassword, user.password)) { // triggers if correct
       req.session.user = user;
       console.log(req.session.user);
       res.redirect('/');
@@ -67,7 +67,7 @@ exports.resetLogin = async function(req,res) {
 exports.signup = async function(req,res) {
   if (req.body.captcha === req.session.source) {
     try {
-      const password = await crypt.encrypt(req.body.password);
+      const password = crypt.encrypt(req.body.password);
       const user = {
         "_id": `loccker:${req.body.mail}`,
         "name": req.body.name,
@@ -126,11 +126,10 @@ exports.deleteAccount = async function(req,res) {
   }
 }
 exports.resetPasswordRequestController = async (req, res, next) => {
-  const test = await resetManger.requestPasswordReset(
+  const test = await resetManager.requestPasswordReset(
     req.body.email
   );
   return res.redirect('/home')
-  
 };
 
 exports.resetPasswordController = async (req, res, next) => {
