@@ -1,7 +1,7 @@
 const JWT = require("jsonwebtoken");
 const sendEmail = require("../utils/email/sendEmail");
 const crypto = require("crypto");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const mongo = require('../manager/mongoManager');
 
 const JWTSecret = process.env.JWT_SECRET;

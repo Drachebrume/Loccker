@@ -15,7 +15,6 @@ exports.upload = async function(req, res) {
     if (!(refused.test(file.name))) {
       refusedName = false;
     };
-    console.log(file.type);
     config.whiteList.some((allowedType) => {
       if (file.type === allowedType) {
         refusedType = false;
@@ -25,15 +24,8 @@ exports.upload = async function(req, res) {
     if (refusedType | refusedName) {
       res.redirect('/profile?status=typeNotAllowed');
     } else if(file.size < 50000000) {
-      const actualpath = process.cwd();
-      const oldpath = file.path;
-      const newpath = `${actualpath}/public/upload/${file.name}`; // url auto image + rename
-      fs.rename(oldpath, newpath, (err2) => { // faut effacer après
-        console.log(`Photo importee `);
-      });
       const fileType = file.type.split('/')[0];
-      await cloud.uploadFile(newpath, file.name, fileType, user.folderId);
-      console.log(user, "------------------");
+      await cloud.uploadFile(file.path, file.name, fileType, user.folderId);
       user.files.push(file.name);
       req.session.user = user;
       await mongo.updateUser(user);

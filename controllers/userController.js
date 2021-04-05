@@ -12,7 +12,6 @@ exports.login = async function(req,res) {
   if (user) {
     if (crypt.compare(req.body.inputPassword, user.password)) { // triggers if correct
       req.session.user = user;
-      console.log(req.session.user);
       res.redirect('/');
     } else {
       res.redirect('/home?status=loginError');
@@ -46,7 +45,6 @@ exports.resetLogin = async function(req,res) {
   let token = req.query.token;
   let id = req.query.id;
   let source = result.image;
-  console.log(token);
   req.session.source = result.value;
   let testToken = await mongo.getToken(`loccker:${id}`)
   if(testToken ){
@@ -103,8 +101,6 @@ exports.profile = async function(req,res) {
       downloadUrl[i] = await cloud.getDownloadUrl(files.resources[i].public_id);
     }
   }
-  console.log(downloadUrl);
-  console.log(files);
   res.render('index', {
     page: 'partials/profile.ejs',
     csrfToken: req.csrfToken(),
